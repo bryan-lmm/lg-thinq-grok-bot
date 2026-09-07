@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lg-thinq-specialty-cycles"
+version = "0.1.0"
+description = "Unofficial ThinQ2 client that lists specialty (download/SmartCourse) laundry cycles and builds remote-start payloads with model-declared start-option fields."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+  { name = "lg-thinq-specialty-cycles contributors" },
+]
+keywords = [
+  "lg",
+  "thinq",
+  "thinq2",
+  "laundry",
+  "washer",
+  "dryer",
+  "smartcourse",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Home Automation",
+]
+dependencies = [
+  "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+thinq-specialty = "thinq_specialty.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/bryan-lmm/lg-thinq-grok-bot"
+PriorArtOllo69 = "https://github.com/ollo69/ha-smartthinq-sensors"
+PriorArtWideq = "https://github.com/sampsyo/wideq"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+thinq_specialty = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

@@ -1,0 +1,147 @@
+{
+  "Info": {
+    "modelType": "SAMPLE_TOWER_WASHER",
+    "productType": "WM"
+  },
+  "Config": {
+    "courseType": "courseSampleTowerWasher",
+    "smartCourseType": "smartCourseSampleTowerWasher",
+    "downloadedCourseType": "smartCourseSampleTowerWasher",
+    "defaultCourse": "COURSE_A",
+    "deviceType": 221
+  },
+  "MonitoringValue": {
+    "courseSampleTowerWasher": {
+      "dataType": "ref",
+      "ref": "Course"
+    },
+    "smartCourseSampleTowerWasher": {
+      "dataType": "ref",
+      "ref": "SmartCourse"
+    },
+    "courseType": {
+      "dataType": "enum",
+      "valueMapping": {
+        "Course": { "label": "Course" },
+        "SmartCourse": { "label": "SmartCourse" }
+      }
+    },
+    "temp": {
+      "dataType": "enum",
+      "valueMapping": {
+        "TEMP_COLD": { "label": "Cold" },
+        "TEMP_WARM": { "label": "Warm" },
+        "TEMP_HOT": { "label": "Hot" }
+      }
+    },
+    "spin": {
+      "dataType": "enum",
+      "valueMapping": {
+        "SPIN_LOW": { "label": "Low" },
+        "SPIN_MEDIUM": { "label": "Medium" },
+        "SPIN_HIGH": { "label": "High" }
+      }
+    },
+    "steam": {
+      "dataType": "enum",
+      "valueMapping": {
+        "STEAM_OFF": { "label": "Off" },
+        "STEAM_ON": { "label": "On" }
+      }
+    },
+    "preWash": {
+      "dataType": "enum",
+      "valueMapping": {
+        "PREWASH_OFF": { "label": "Off" },
+        "PREWASH_ON": { "label": "On" }
+      }
+    },
+    "remoteStart": {
+      "dataType": "enum",
+      "valueMapping": {
+        "REMOTE_START_OFF": { "label": "Off" },
+        "REMOTE_START_ON": { "label": "On" }
+      }
+    },
+    "initialBit": {
+      "dataType": "enum",
+      "valueMapping": {
+        "INITIAL_BIT_OFF": { "label": "Off" },
+        "INITIAL_BIT_ON": { "label": "On" }
+      }
+    },
+    "reserveTimeHour": {
+      "dataType": "range",
+      "valueMapping": { "min": 0, "max": 19, "step": 1 }
+    },
+    "reserveTimeMinute": {
+      "dataType": "range",
+      "valueMapping": { "min": 0, "max": 59, "step": 1 }
+    }
+  },
+  "Course": {
+    "COURSE_A": {
+      "name": "@WM_COURSE_A",
+      "_comment": "Base cycle A",
+      "courseType": "Course",
+      "function": [
+        { "value": "temp", "default": "TEMP_WARM" },
+        { "value": "spin", "default": "SPIN_MEDIUM" },
+        { "value": "steam", "default": "STEAM_OFF" }
+      ]
+    },
+    "COURSE_B": {
+      "name": "@WM_COURSE_B",
+      "_comment": "Base cycle B",
+      "courseType": "Course",
+      "function": [
+        { "value": "temp", "default": "TEMP_COLD" },
+        { "value": "spin", "default": "SPIN_LOW" },
+        { "value": "preWash", "default": "PREWASH_OFF" }
+      ]
+    }
+  },
+  "SmartCourse": {
+    "SPECIALTY_CYCLE_1": {
+      "name": "@WM_SPECIALTY_1",
+      "_comment": "Download specialty cycle 1",
+      "courseType": "SmartCourse",
+      "Course": "COURSE_A",
+      "function": [
+        { "value": "temp", "default": "TEMP_COLD" },
+        { "value": "steam", "default": "STEAM_ON" }
+      ]
+    },
+    "SPECIALTY_CYCLE_2": {
+      "name": "@WM_SPECIALTY_2",
+      "_comment": "Download specialty cycle 2",
+      "courseType": "SmartCourse",
+      "function": [
+        { "value": "temp", "default": "TEMP_HOT" },
+        { "value": "spin", "default": "SPIN_HIGH" },
+        { "value": "preWash", "default": "PREWASH_ON" }
+      ]
+    }
+  },
+  "ControlWifi": {
+    "WMStart": {
+      "ctrlKey": "WMStart",
+      "command": "Set",
+      "data": {
+        "washerDryer": {
+          "course": "",
+          "smartCourse": "",
+          "courseType": "",
+          "initialBit": "",
+          "remoteStart": "REMOTE_START_ON",
+          "temp": "",
+          "spin": "",
+          "steam": "",
+          "preWash": "",
+          "reserveTimeHour": 0,
+          "reserveTimeMinute": 0
+        }
+      }
+    }
+  }
+}

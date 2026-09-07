@@ -1,0 +1,53 @@
+lg-thinq-specialty-cycles
+=========================
+
+This project is an independent, unofficial Python client for LG ThinQ2 laundry
+devices. It is not affiliated with, endorsed by, or partnered with LG
+Electronics.
+
+The protocol knowledge in this repository was learned from public community
+work. This library is not first, and it does not replace those projects.
+
+
+Prior art (please use and credit these)
+---------------------------------------
+
+1. ollo69 / ha-smartthinq-sensors
+   https://github.com/ollo69/ha-smartthinq-sensors
+   License: Apache License 2.0
+   Copyright: ollo69 and contributors
+
+   This is the primary source for ThinQ2 laundry remote-start payloads,
+   CourseType.COURSE vs CourseType.SMARTCOURSE, model-info course catalogs,
+   and WMStart / control-sync command shape. Specialty (download) cycles
+   live in the SmartCourse catalog on many washers and dryers; UI lists that
+   only load CourseType.COURSE omit them.
+
+2. sampsyo / wideq
+   https://github.com/sampsyo/wideq
+   License: MIT
+   Copyright (c) 2018 Adrian Sampson
+
+   Original reverse-engineered ThinQ client: gateway discovery, EMP OAuth,
+   refresh-token signing, and the overall unofficial API approach.
+
+3. tinkerborg / thinq2-python
+   https://github.com/tinkerborg/thinq2-python
+   License: GNU General Public License v3.0
+
+   Early ThinQ2 HTTP client and control-sync documentation. This repository
+   does not copy or distribute that project's source. It is listed here as
+   prior art only.
+
+
+License notes
+-------------
+
+This project's original source is MIT-licensed. Protocol constants that
+appear in multiple public clients (gateway URLs, public app client ids,
+and the well-known EMP OAuth HMAC secret published by wideq and later
+clients) are facts of the unofficial ThinQ app API, not original secrets.
+
+No source files were copied from ha-smartthinq-sensors (Apache-2.0) or
+thinq2-python (GPL-3.0). If you later vendor Apache-2.0 code from ollo69,
+retain Apache notices and include a copy of that license for those files.
