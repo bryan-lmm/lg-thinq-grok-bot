@@ -55,9 +55,10 @@ See [NOTICE](NOTICE) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ThinQ2 uses **LG account OAuth**, not a ThinQ Connect PAT.
 
-1. `thinq-specialty login` — open the printed URL, sign in, copy the redirected callback URL.
-2. `thinq-specialty login --callback-url '...'` — prints env exports.
-3. Store the refresh token via the **bot secret card** (or `THINQ_REFRESH_TOKEN` in a local gitignored `.env`).
+1. `thinq-specialty login` — open the printed URL and sign in.
+2. **Login-loop gotcha:** after sign-in the browser often lands back on a **login box**. That is normal. Do not keep re-entering credentials. Watch the address bar: when the URL contains `access_token`, hit **I'm done** (or finish the bot handoff) and copy that **full callback URL**.
+3. `thinq-specialty login --callback-url '...'` — prints env exports.
+4. Store the refresh token via the **bot secret card** (or `THINQ_REFRESH_TOKEN` in a local gitignored `.env`).
 
 | Variable | Required | Purpose |
 | --- | --- | --- |
