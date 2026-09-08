@@ -30,3 +30,4 @@ credentials.env
 
 # Local research scratch (not part of the project)
 agent-tools/
+.oauth_callback_url
