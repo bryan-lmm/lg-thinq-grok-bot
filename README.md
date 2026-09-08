@@ -9,24 +9,26 @@ This is an unofficial **ThinQ2 (app) API** client. It is **not** LG ThinQ Connec
 ```bash
 git clone https://github.com/bryan-lmm/lg-thinq-grok-bot.git
 cd lg-thinq-grok-bot
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
+./scripts/bootstrap.sh          # creates .venv and pip install -e .
+# or: python3 -m venv .venv && source .venv/bin/activate && pip install -e .
 ```
 
-Set LG credentials via the **bot secret card** (refresh token / country / language). Do not paste secrets into chat or commit them.
+**Use the venv.** Bare `pip install` on Debian/Ubuntu-style systems often fails with `externally-managed-environment` (PEP 668). That is a Python packaging wall, not an LG login problem.
 
-Then run:
+### Grok Bot strangers
+See [docs/GROK_BOT_ONBOARDING.md](docs/GROK_BOT_ONBOARDING.md) for the template path: install bot → bootstrap → OAuth (login-loop gotcha) → secret card → discover → chat.
+
+Then:
 
 ```bash
-thinq-specialty login
-thinq-specialty devices
-thinq-specialty courses --device DEVICE_ID
-thinq-specialty start --device DEVICE_ID --course COURSE_ID   # dry-run by default
-thinq-specialty start --device DEVICE_ID --course COURSE_ID --execute
+.venv/bin/thinq-specialty login
+.venv/bin/thinq-specialty devices
+.venv/bin/thinq-specialty courses --device DEVICE_ID
+.venv/bin/thinq-specialty start --device DEVICE_ID --course COURSE_ID   # dry-run
+.venv/bin/thinq-specialty start --device DEVICE_ID --course COURSE_ID --execute
 ```
 
-CLI entry point: `thinq-specialty`.
+Store `THINQ_REFRESH_TOKEN` **and** `THINQ_CLIENT_ID` via a bot secret card or gitignored `.env`. Keep the same client id — rotating it can make LG return 400s.
 
 ## Why ThinQ2 (not Connect PAT)
 
@@ -63,6 +65,7 @@ ThinQ2 uses **LG account OAuth**, not a ThinQ Connect PAT.
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `THINQ_REFRESH_TOKEN` | yes (after login) | Long-lived OAuth refresh token |
+| `THINQ_CLIENT_ID` | strongly recommended | Sticky per-account id from login export; do not rotate daily |
 | `THINQ_COUNTRY` | no | Default `US` |
 | `THINQ_LANGUAGE` | no | Default `en-US` |
 

@@ -371,10 +371,13 @@ def credentials_from_callback(
         except (AuthError, httpx.HTTPError):
             user_number = None
 
+    seed = user_number or refresh_token[:32]
+    client_id = hashlib.sha256(f"thinq-specialty:{seed}".encode()).hexdigest()
     return Credentials(
         refresh_token=refresh_token,
         access_token=access_token,
         user_number=user_number,
+        client_id=client_id,
         country=gateway.country,
         language=gateway.language,
     )

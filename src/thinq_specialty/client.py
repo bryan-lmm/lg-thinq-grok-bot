@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import urljoin
 
@@ -26,11 +25,11 @@ from .start import RemoteStartPlan, build_remote_start
 
 
 def _client_id_for(credentials: Credentials) -> str:
+    """Stable per-account client id. Do not rotate daily — LG rate-limits that."""
     if credentials.client_id:
         return credentials.client_id
-    seed = credentials.user_number or credentials.refresh_token[:16]
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%d")
-    return hashlib.sha256(f"{seed}{stamp}".encode()).hexdigest()
+    seed = credentials.user_number or credentials.refresh_token[:32]
+    return hashlib.sha256(f"thinq-specialty:{seed}".encode()).hexdigest()
 
 
 class ThinQClient:
