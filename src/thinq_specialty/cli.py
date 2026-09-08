@@ -75,7 +75,7 @@ def cmd_login(args: argparse.Namespace) -> int:
             print("2. Login-loop gotcha: after sign-in the page often looks like the")
             print("   login box again. That is OK. Do NOT keep re-entering credentials.")
             print("   Watch the address bar. When the URL contains access_token,")
-            print("   copy the FULL URL (Grok Bot users: hit I'm done on the handoff).")
+            print("   copy the FULL URL (or finish the bot handoff / hit I'm done).")
             print("3. Re-run:")
             print(f"   {PROG} login --callback-url '<pasted url>'")
             print()
