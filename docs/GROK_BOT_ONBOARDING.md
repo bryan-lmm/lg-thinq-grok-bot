@@ -30,7 +30,7 @@ Put `THINQ_REFRESH_TOKEN` (and keep `THINQ_CLIENT_ID`) in a **secret card** / gi
 thinq-specialty devices
 thinq-specialty courses --device DEVICE_ID
 ```
-Then natural language: “delicate underwear”, “towels ready by 3:30”. Starts are dry-run until the user says execute. Remote Start must be on the machine.
+Then natural language: “towels”, “bedding”, “jeans”, “ready by 3:30”. Starts are dry-run until the user says execute. Remote Start must be on the machine. Keep public demos neutral.
 
 ## Known limits (say them early)
 - Official ThinQ Connect PAT cannot set specialty courses.
